@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { format, parseISO } from 'date-fns'
@@ -9,8 +10,7 @@ import { convertDurationToTimeString } from '../utils/convertDurationToTimeStrin
 //SSR
 //SSG bolinha branca dizendo que a página foi gerada de forma statica
 import styles from './home.module.scss'
-import { useContext } from 'react'
-import { PlayerContext } from '../contexts/PlayerContext'
+import { usePlayer } from '../contexts/PlayerContext'
 
 type Episode = {
   id: string;
@@ -25,17 +25,19 @@ type Episode = {
 
 type HomeProps = {
   latestEpisodes: Episode[];
-  allEpisodes: Episode[];
+  allEpisodes: Episode[]
 };
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  const { play } = useContext(PlayerContext)
+  const { playList } = usePlayer()
+
+  const episodeList = [...latestEpisodes, ...allEpisodes]
   
   return (
     <div className={styles.homepage}>
-    {/* <Head>
+    <Head>
       <title>Home | Podcastr</title>
-    </Head> */}
+    </Head>
     <section className={styles.latestEpisodes}>
       <h2>últimos lançamentos </h2>
 
@@ -62,7 +64,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
                 <button
                   type="button"
-                  onClick={() => play(episode)}
+                  onClick={() => playList(episodeList, index)}
                 >
                   <img src="play-green.svg" alt="Tocar episódio" />
                 </button>
@@ -110,9 +112,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <td>
                     <button
                       type="button"
-                      // onClick={() =>
-                      //   playList(episodeList, index + latestEpisodes.length)
-                      // }
+                      onClick={() =>
+                        playList(episodeList, index + latestEpisodes.length)
+                      }
                     >
                       <img src="play-green.svg" alt="Tocar episódio" />
                     </button>

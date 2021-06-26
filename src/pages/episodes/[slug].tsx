@@ -9,6 +9,7 @@ import { convertDurationToTimeString } from '../../utils/convertDurationToTimeSt
 import Head from 'next/head'
 
 import styles from './episode.module.scss'
+import { usePlayer } from '../../contexts/PlayerContext';
 
 type Episode = {
     id: string;
@@ -27,7 +28,7 @@ type Episode = {
   }
   
   export default function Episode({ episode } : EpisodeProps) {
-    //const { play } = usePlayer()
+    const { play } = usePlayer()
   
     return (
         <div className={styles.episodeContainer}>

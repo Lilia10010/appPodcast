@@ -1,6 +1,3 @@
-código da aula I: #missaoespacial
-código da aula II: #embuscadoproximonivel
-
 <h1 align="center"> App Podcast</h1>
 
 <h2 align="center"> Aplicativo desenvolvido durante a NLW V 💜 </h2>
@@ -15,8 +12,8 @@ código da aula II: #embuscadoproximonivel
 - NextJS
 - TypeScript
 
-<h3 align="center">
+<!-- <h3 align="center">
     💻 <a href="#" target="_blank">Visualizar aplicação <a>
-</h3>
+</h3> -->
 
 <p align="center"> Developed by 🍄 Lília Paula </p>
